@@ -24,7 +24,6 @@ class FlutterDriverReporter extends Reporter {
     this.logInfoMessages = false,
   });
 
-  @override
   Future<void> onTestRunStarted() async {
     driverLog = _driverLogMessageHandler;
   }

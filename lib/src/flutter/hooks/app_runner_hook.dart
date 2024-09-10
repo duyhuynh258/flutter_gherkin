@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter_gherkin/src/flutter/flutter_run_process_handler.dart';
 import 'package:flutter_gherkin/src/flutter/flutter_test_configuration.dart';
 import 'package:gherkin/gherkin.dart';
@@ -20,8 +21,7 @@ class FlutterAppRunnerHook extends Hook {
   }
 
   @override
-  Future<void> onAfterRun(TestConfiguration config) async =>
-      await _terminateApp();
+  Future<void> onAfterRun(TestConfiguration config) async => await _terminateApp();
 
   @override
   Future<void> onBeforeScenario(
@@ -39,12 +39,12 @@ class FlutterAppRunnerHook extends Hook {
   Future<void> onAfterScenario(
     TestConfiguration config,
     String scenario,
-    Iterable<Tag> tags,
-  ) async {
+    Iterable<Tag> tags, {
+    bool passed = true,
+  }) async {
     final flutterConfig = _castConfig(config);
     haveRunFirstScenario = true;
-    if (_flutterRunProcessHandler != null &&
-        flutterConfig.restartAppBetweenScenarios) {
+    if (_flutterRunProcessHandler != null && flutterConfig.restartAppBetweenScenarios) {
       await _restartApp();
     }
   }

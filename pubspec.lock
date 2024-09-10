@@ -145,10 +145,10 @@ packages:
     dependency: "direct main"
     description:
       name: gherkin
-      sha256: bb6369442a1dbc0ca3167633587fb74e13845ac467e4db675b3d27f664df0dcd
+      sha256: c3e0c98b305a94ec8c015038529a1c8c6ea3b0953619514e76647407efb66d7f
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.2"
+    version: "3.1.0"
   glob:
     dependency: transitive
     description:
@@ -450,6 +450,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.0"
+  uuid:
+    dependency: transitive
+    description:
+      name: uuid
+      sha256: "648e103079f7c64a36dc7d39369cabb358d377078a051d6ae2ad3aa539519313"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.7"
   vector_math:
     dependency: transitive
     description:

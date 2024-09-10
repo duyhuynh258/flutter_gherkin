@@ -11,38 +11,37 @@ void main() {
       test('flutter app runner hook added', () {
         final config = FlutterTestConfiguration();
         expect(config.hooks, isNull);
-        config.prepare();
-        expect(config.hooks, isNotNull);
-        expect(config.hooks!.length, 1);
-        expect(config.hooks!.elementAt(0), (x) => x is FlutterAppRunnerHook);
+        final newConfig = config.prepare();
+        expect(newConfig.hooks, isNotNull);
+        expect(newConfig.hooks!.length, 1);
+        expect(newConfig.hooks!.elementAt(0), (x) => x is FlutterAppRunnerHook);
       });
 
       test('common steps definition added', () {
         final config = FlutterTestConfiguration();
         expect(config.stepDefinitions, isNull);
 
-        config.prepare();
-        expect(config.stepDefinitions, isNotNull);
-        expect(config.stepDefinitions!.length, 23);
-        expect(config.customStepParameterDefinitions, isNotNull);
-        expect(config.customStepParameterDefinitions!.length, 2);
+        final newConfig = config.prepare();
+        expect(newConfig.stepDefinitions, isNotNull);
+        expect(newConfig.stepDefinitions!.length, 23);
+        expect(newConfig.customStepParameterDefinitions, isNotNull);
+        expect(newConfig.customStepParameterDefinitions!.length, 2);
       });
 
       test('common step definition added to existing steps', () {
-        final config = FlutterTestConfiguration()
-          ..stepDefinitions = [MockStepDefinition()]
-          ..customStepParameterDefinitions = [MockParameter()];
+        final config = FlutterTestConfiguration(
+          stepDefinitions: [MockStepDefinition()],
+          customStepParameterDefinitions: [MockParameter()],
+        );
         expect(config.stepDefinitions!.length, 1);
 
-        config.prepare();
-        expect(config.stepDefinitions, isNotNull);
-        expect(config.stepDefinitions!.length, 24);
-        expect(config.stepDefinitions!.elementAt(0),
-            (x) => x is MockStepDefinition);
-        expect(config.customStepParameterDefinitions, isNotNull);
-        expect(config.customStepParameterDefinitions!.length, 3);
-        expect(config.customStepParameterDefinitions!.elementAt(0),
-            (x) => x is MockParameter);
+        final newConfig = config.prepare();
+        expect(newConfig.stepDefinitions, isNotNull);
+        expect(newConfig.stepDefinitions!.length, 24);
+        expect(newConfig.stepDefinitions!.elementAt(0), (x) => x is MockStepDefinition);
+        expect(newConfig.customStepParameterDefinitions, isNotNull);
+        expect(newConfig.customStepParameterDefinitions!.length, 3);
+        expect(newConfig.customStepParameterDefinitions!.elementAt(0), (x) => x is MockParameter);
       });
     });
   });
